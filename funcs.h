@@ -16,19 +16,18 @@ void printFunc(T** array, int rows, int cols)
 }
 
 template <typename T>
-void addFunc(T**& array, int rows, int& cols, T* array_1, int pos)
+void deleteFunc(T**& array, int rows, int& cols, int pos)
 {
 	T** new_a = new T * [rows];
 	for (int i = 0; i < rows; i++) {
-		new_a[i] = new T[cols + 1];
+		new_a[i] = new T[cols - 1];
 	}
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < pos; j++) {
 			*(*(new_a + i) + j) = *(*(array + i) + j);
 		}
-		*(*(new_a + i) + pos) = *(array_1 + i);
-		for (int j = pos; j < cols; j++) {
-			*(*(new_a + i) + j + 1) = *(*(array + i) + j);
+		for (int j = pos + 1; j < cols; j++) {
+			*(*(new_a + i) + j - 1) = *(*(array + i) + j);
 		}
 	}
 	for (int i = 0; i < rows; i++) {
@@ -36,6 +35,6 @@ void addFunc(T**& array, int rows, int& cols, T* array_1, int pos)
 	}
 	delete[] array;
 	array = new_a;
-	cols++;
+	cols--;
 }
 	
