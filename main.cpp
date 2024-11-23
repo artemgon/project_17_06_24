@@ -2,7 +2,7 @@
 
 int main()
 {
-	int rows = 3, cols = 4;
+	int rows = 3, cols = 4, index = 2;
 	int* array_1 = new int[cols];
 	for (int i = 0; i < cols; i++)
 	{
@@ -19,7 +19,7 @@ int main()
 	}
 	printFunc(array_2, rows, cols);
 	cout << endl;
-	addFunc(array_2, rows, cols, array_1);
+	addFunc(array_2, rows, cols, array_1, index);
 	printFunc(array_2, rows, cols);
 	for (int i = 0; i < rows; ++i) {
 		delete[] array_2[i];

@@ -14,17 +14,21 @@ void printFunc(T ** array, int rows, int cols)
 }
 
 template <typename T>
-void addFunc(T** &array, int& rows, int cols, T *array_1)
+void addFunc(T** &array, int& rows, int cols, T *array_1, int pos)
 {
 	T** new_a = new T * [rows + 1];
-	for (int i = 1; i <= rows; i++)
+	for (int i = 0; i < pos; i++)
 	{
-		*(new_a + i) = *(array + i - 1);
+		*(new_a + i) = *(array + i);
 	}
-	new_a[0] = new T[cols];
+	new_a[pos] = new T[cols];
 	for (int i = 0; i < cols; i++)
 	{
-		*(*(new_a + 0) + i) = *(array_1 + i);
+		*(*(new_a + pos) + i) = *(array_1 + i);
+	}
+	for (int i = pos; i < rows; i++)
+	{
+		*(new_a + i + 1) = *(array + i);
 	}
 	delete[] array;
 	array = new_a;
