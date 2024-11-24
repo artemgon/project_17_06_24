@@ -2,23 +2,29 @@
 
 int main()
 {
-	int rows = 3, cols = 4, index = 2;
-	int** array_2 = new int* [rows];
+	srand(time(NULL));
+	int rows = 4, cols = 4;
+	int** array = new int* [rows];
 	for (int i = 0; i < rows; i++)
 	{
-		array_2[i] = new int[cols];
-		for (int j = 0; j < cols; j++)
-		{
-			*(*(array_2 + i) + j) = i * cols + j;
+		*(array + i) = new int[cols];
+	}
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			array[i][j] = rand() % 10;
 		}
 	}
-	printFunc(array_2, rows, cols);
+	printFunc(array, rows, cols);
+	moveRows(array, rows, cols, 2, 'd');
 	cout << endl;
-	deleteFunc(array_2, rows, cols, index);
-	printFunc(array_2, rows, cols);
-	for (int i = 0; i < rows; ++i) {
-		delete[] array_2[i];
+	printFunc(array, rows, cols);
+	moveCols(array, rows, cols, 3, 'r');
+	cout << endl;
+	printFunc(array, rows, cols);
+	for (int i = 0; i < rows; i++) {
+		delete[] array[i];
 	}
-	delete[] array_2;
+	delete[] array;
+
 	return 0;
 }
